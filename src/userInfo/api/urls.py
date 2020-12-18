@@ -1,0 +1,52 @@
+from django.urls import path
+from .views import (
+    ListStudentView,
+    StudentDetailView,
+    ResetStudentPasswordView,
+    StudentPaymentView,
+    StudentContractView,
+    ListTeacherView,
+    StaffDetailView,
+    ListStaffView,
+    ResetStaffPasswordView,
+    StudentListOffsetView,
+    UpdateStudentListView,
+    StudentFreezeDetailView,
+    StudentGroupFreezeListView,
+    StudentGroupFreezeDetailView,
+
+    # FetchStudents,
+    # FetchTeachers,
+    # FetchParents,
+    # SwapFirstAndLastNameFromStudent,
+    # SwapFirstAndLastNameFromTeacher,
+)
+
+urlpatterns = [
+    path('student/list/', ListStudentView.as_view()), #depreciated
+    path('student/list/<start>/<limit>/', StudentListOffsetView.as_view()),
+    path('student/', StudentDetailView.as_view()),
+    path('student/edit/<user_pk>/', StudentDetailView.as_view()),
+    path('reset/password/student/<user_pk>/', ResetStudentPasswordView.as_view()),
+    path('payment/<user_pk>/<has_payment>/', StudentPaymentView.as_view()),
+    path('contract/<user_pk>/<has_contract>/', StudentContractView.as_view()),
+    path('teacher/list/', ListTeacherView.as_view()),
+    path('staff/', StaffDetailView.as_view()),
+    path('staff/edit/<user_pk>/', StaffDetailView.as_view()),
+    path('staff/list/', ListStaffView.as_view()),
+    path('reset/password/staff/<user_pk>/', ResetStaffPasswordView.as_view()),
+    path('update/student/list/', UpdateStudentListView.as_view()),
+    path('student/freeze/get/<user_pk>/', StudentFreezeDetailView.as_view()),
+    path('student/freeze/set/', StudentFreezeDetailView.as_view()),
+    path('student/freeze/edit/<student_freeze_pk>/', StudentFreezeDetailView.as_view()),
+    path('student/freeze/delete/<student_freeze_pk>/', StudentFreezeDetailView.as_view()),
+    path('student/group/freeze/list/<lesson_group_student_pk>/', StudentGroupFreezeListView.as_view()),
+    path('student/group/freeze/create/', StudentGroupFreezeDetailView.as_view()),
+    path('student/group/freeze/delete/<student_group_freeze_pk>/', StudentGroupFreezeDetailView.as_view()),
+
+    # path('student/fetch/', FetchStudents.as_view()),
+    # path('teacher/fetch/', FetchTeachers.as_view()),
+    # path('parent/fetch/', FetchParents.as_view()),
+    # path('swap/first/last/name/student/', SwapFirstAndLastNameFromStudent.as_view()),
+    # path('swap/first/last/name/teacher/', SwapFirstAndLastNameFromTeacher.as_view()),
+]
